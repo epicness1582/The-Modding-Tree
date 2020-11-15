@@ -11,11 +11,21 @@ addLayer("c", {
          },
     upgrades: {
     rows: 1, 
-    cols: 4,
+    cols: 3,
     11: {
 	    Title: "Regular Walking",
         description: "Let go of Shift and walk normally",
-        cost: new Decimal(10),
+        cost: new Decimal(5),
+    },
+    12: {
+        Title: "Sprinting",
+        description: "Double tap w or press ctrl",
+        cost: new Decimal(15),
+    },
+    13: {
+        Title: "Sprint Jumping",
+    description: "I AM SPEED AND I AM A PARKOUR KING",
+    cost: new Decimal(30)
     },
 },
 	    	    
