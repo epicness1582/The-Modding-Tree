@@ -44,7 +44,7 @@ function addedPlayerData() { return {
 }}
 
 // Display extra things at the top of the page
-var displayThings = [
+var displayThings = [ "Testing bad coding"
 ]
 
 // Determines when the game "ends"
