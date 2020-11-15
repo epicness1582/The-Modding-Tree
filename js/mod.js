@@ -1,10 +1,10 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
+	name: "Minecraft Tree",
+	id: "epic mod",
+	author: "epicness1582",
 	pointsName: "points",
-	discordName: "",
-	discordLink: "",
+	discordName: "The Modding Tree",
+	discordLink: "https://discord.gg/6FN5UZg",
 	changelogLink: "https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	
@@ -14,7 +14,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.0",
-	name: "Literally nothing",
+	name: "Testing stuff",
 }
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
