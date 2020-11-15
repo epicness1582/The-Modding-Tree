@@ -31,5 +31,5 @@ addLayer("c", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
-    })
+    }
   
