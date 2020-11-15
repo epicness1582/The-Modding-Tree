@@ -4,10 +4,10 @@ addLayer("c", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
+    }},
 		points: new Decimal(0),
 	     update(diff) {
     player[this.layer].points = player.points.div(16).floor();
-},
 	    upgrades: {
     rows: 1, 
     cols: 4,
@@ -31,5 +31,5 @@ addLayer("c", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
-    }
+    })
   
