@@ -11,7 +11,7 @@ addLayer("c", {
          },
     upgrades: {
     rows: 1, 
-    cols: 3,
+    cols: 4,
     11: {
 	    Title: "Regular Walking",
         description: "Let go of Shift and walk normally",
@@ -25,7 +25,12 @@ addLayer("c", {
     13: {
         Title: "Sprint Jumping",
     description: "I AM SPEED AND I AM A PARKOUR KING",
-    cost: new Decimal(30)
+    cost: new Decimal(30),
+    },
+    14: {
+        Title: "I found something",
+        description: "Find a cave and unlock new layer content",
+        cost: new Decimal(50),
     },
 },
 	    	    
