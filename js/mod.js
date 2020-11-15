@@ -2,7 +2,7 @@ let modInfo = {
 	name: "Minecraft Tree",
 	id: "epic mod",
 	author: "epicness1582",
-	pointsName: "points",
+	pointsName: "Blocks Walked",
 	discordName: "The Modding Tree",
 	discordLink: "https://discord.gg/6FN5UZg",
 	changelogLink: "https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md",
