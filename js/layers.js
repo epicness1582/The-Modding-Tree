@@ -4,11 +4,12 @@ addLayer("c", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
+        points: new Decimal(0),
     }},
-		points: new Decimal(0),
 	     update(diff) {
-    player[this.layer].points = player.points.div(16).floor();
-	    upgrades: {
+    player[this.layer].points = player.points.div(16).floor(); 
+         },
+    upgrades: {
     rows: 1, 
     cols: 4,
     11: {
@@ -20,6 +21,7 @@ addLayer("c", {
 	    	    
     color: "#4BDC13",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    row:0,
     resource: "Chunks Loaded", // Name of prestige currency
     baseResource: "Chunks", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -31,5 +33,4 @@ addLayer("c", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
-    })
-  
+    }})
