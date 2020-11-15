@@ -5,13 +5,17 @@ addLayer("p", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+	    update(diff) {
+    player[this.layer].points = player.points.div(16).floor();
+},
+	    
     }},
     color: "#4BDC13",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "Chunks Loaded", // Name of prestige currency
     baseResource: "Chunks", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
-    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
