@@ -15,13 +15,14 @@ addLayer("c", {
     11: {
 	    Title: "Regular Walking",
         description: "Let go of Shift and walk normally",
-        cost: new Decimal(100),
+        cost: new Decimal(10),
     },
 },
 	    	    
     color: "#4BDC13",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     row:0,
+    layerShown:true,
     resource: "Chunks Loaded", // Name of prestige currency
     baseResource: "Chunks", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
