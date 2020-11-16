@@ -67,7 +67,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
-        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
         gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
@@ -99,7 +99,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
-        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
         gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
@@ -131,7 +131,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
-        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
         gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
@@ -160,7 +160,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
-        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
         gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
@@ -182,7 +182,7 @@ addLayer("c", {
         color: "#FFFFFF",                       // The color for this layer, which affects many elements.
         resource: "Potions",            // The name of this layer's main prestige resource.
         row: 2,
-        position: 1,                                 // The row this layer is on (0 is the first row).
+        position: 1,
     
         baseResource: "Potions Made",                 // The name of the resource your prestige gain is based on.
         baseAmount() { return player.points },  // A function to return the current amount of baseResource.
@@ -190,7 +190,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
-        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
         gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
@@ -219,7 +219,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
-        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
         gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
