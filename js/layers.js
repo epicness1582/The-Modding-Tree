@@ -58,10 +58,162 @@ addLayer("c", {
         }},
     
         color: "#808080",                       // The color for this layer, which affects many elements.
-        resource: "prestige points",            // The name of this layer's main prestige resource.
+        resource: "Blocks Mined",            // The name of this layer's main prestige resource.
         row: 1,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "points",                 // The name of the resource your prestige gain is based on.
+        baseAmount() { return player.points },  // A function to return the current amount of baseResource.
+    
+        requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
+                                                // Also the amount required to unlock the layer.
+    
+        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
+    
+        gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+            return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+        },
+        gainExp() {                             // Returns your exponent to your gain of the prestige resource.
+            return new Decimal(1)
+        },
+    
+        layerShown() {
+            if(hasUpgrade("c", 14)) return true;
+            return false;
+        }            // Returns a bool for if this layer's node should be visible in the tree.
+    })
+
+    addLayer("T", {
+        startData() { return {                  // startData is a function that returns default data for a layer. 
+            unlocked: true,                     // You can add more variables here to add them to your layer.
+            points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+        }},
+    
+        color: "#D2691E",                       // The color for this layer, which affects many elements.
+        resource: "Crafting Table",            // The name of this layer's main prestige resource.
+        row: 1,                                 // The row this layer is on (0 is the first row).
+    
+        baseResource: "Unique Items Crafted",                 // The name of the resource your prestige gain is based on.
+        baseAmount() { return player.points },  // A function to return the current amount of baseResource.
+    
+        requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
+                                                // Also the amount required to unlock the layer.
+    
+        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
+    
+        gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+            return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+        },
+        gainExp() {                             // Returns your exponent to your gain of the prestige resource.
+            return new Decimal(1)
+        },
+    
+        layerShown() {
+            if(hasUpgrade("c", 14)) return true;
+            return false;
+        }            // Returns a bool for if this layer's node should be visible in the tree.
+    })
+
+    addLayer("e", {
+        startData() { return {                  // startData is a function that returns default data for a layer. 
+            unlocked: true,                     // You can add more variables here to add them to your layer.
+            points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+        }},
+    
+        color: "#9400D3",                       // The color for this layer, which affects many elements.
+        resource: "Enchantments",            // The name of this layer's main prestige resource.
+        row: 2,                                 // The row this layer is on (0 is the first row).
+    
+        baseResource: "enchantments done",                 // The name of the resource your prestige gain is based on.
+        baseAmount() { return player.points },  // A function to return the current amount of baseResource.
+    
+        requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
+                                                // Also the amount required to unlock the layer.
+    
+        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
+    
+        gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+            return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+        },
+        gainExp() {                             // Returns your exponent to your gain of the prestige resource.
+            return new Decimal(1)
+        },
+    
+        layerShown() { return true }            // Returns a bool for if this layer's node should be visible in the tree.
+    })
+
+    addLayer("F", {
+        startData() { return {                  // startData is a function that returns default data for a layer. 
+            unlocked: true,                     // You can add more variables here to add them to your layer.
+            points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+        }},
+    
+        color: "#006400",                       // The color for this layer, which affects many elements.
+        resource: "Mobs",            // The name of this layer's main prestige resource.
+        row: 2,                                 // The row this layer is on (0 is the first row).
+    
+        baseResource: "Mobs Slain",                 // The name of the resource your prestige gain is based on.
+        baseAmount() { return player.points },  // A function to return the current amount of baseResource.
+    
+        requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
+                                                // Also the amount required to unlock the layer.
+    
+        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
+    
+        gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+            return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+        },
+        gainExp() {                             // Returns your exponent to your gain of the prestige resource.
+            return new Decimal(1)
+        },
+    
+        layerShown() { return true }            // Returns a bool for if this layer's node should be visible in the tree.
+    })
+
+    addLayer("P", {
+        startData() { return {                  // startData is a function that returns default data for a layer. 
+            unlocked: true,                     // You can add more variables here to add them to your layer.
+            points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+        }},
+    
+        color: "#FFFFFF",                       // The color for this layer, which affects many elements.
+        resource: "Potions",            // The name of this layer's main prestige resource.
+        row: 2,
+        position: 1,                                 // The row this layer is on (0 is the first row).
+    
+        baseResource: "Potions Made",                 // The name of the resource your prestige gain is based on.
+        baseAmount() { return player.points },  // A function to return the current amount of baseResource.
+    
+        requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
+                                                // Also the amount required to unlock the layer.
+    
+        type: "normal",                         // Determines the formula used for calculating prestige currency.
+        exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
+    
+        gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+            return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+        },
+        gainExp() {                             // Returns your exponent to your gain of the prestige resource.
+            return new Decimal(1)
+        },
+    
+        layerShown() { return true }            // Returns a bool for if this layer's node should be visible in the tree.
+    })
+
+    addLayer("B", {
+        startData() { return {                  // startData is a function that returns default data for a layer. 
+            unlocked: true,                     // You can add more variables here to add them to your layer.
+            points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+        }},
+    
+        color: "#000000",                       // The color for this layer, which affects many elements.
+        resource: "Bosses",            // The name of this layer's main prestige resource.
+        row: 3,                                 // The row this layer is on (0 is the first row).
+    
+        baseResource: "Bosses Slain",                 // The name of the resource your prestige gain is based on.
         baseAmount() { return player.points },  // A function to return the current amount of baseResource.
     
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
