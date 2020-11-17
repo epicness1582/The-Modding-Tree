@@ -54,15 +54,20 @@ addLayer("c", {
     addLayer("M", {
         startData() { return {         
             buyableTimer: {
-                11: 0,
+                11: 8,
                 12: 0,
-                13: 0,
+                13: 5,
                 14: 0,
                 15: 0,
-              },         // startData is a function that returns default data for a layer. 
+              },        // startData is a function that returns default data for a layer. 
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
+        update(diff) {
+            for (i=11;i<=15;i++) {
+                player[this.layer].buyableTimer[i] = Math.max(player[this.layer].buyableTimer[i] - diff, 0);
+              }
+                 }, 
     
         color: "#808080",                       // The color for this layer, which affects many elements.
         resource: "Blocks Mined",            // The name of this layer's main prestige resource.
@@ -81,8 +86,10 @@ addLayer("c", {
                 },
                 cost(x) {return 0},
                 display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
-                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                canAfford() { return player[this.layer].buyableTimer[this.id] == 0 },
                 buy() {
+                    timer = 5
+                    player[this.layer].buyableTimer[this.id] = timer;
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
@@ -111,6 +118,8 @@ addLayer("c", {
                 display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
+                    timer = 5;
+                    player[this.layer].buyableTimer[this.id] = timer;
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
