@@ -102,9 +102,12 @@ addLayer("c", {
                     "background-color": "#808080"
                 },
                 cost(x) {return 0},
-                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
-                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${format(player[this.layer].buyableTimer[this.id])}`},
+                canAfford() { return player[this.layer].buyableTimer[this.id] == 0 },
                 buy() {
+                    timer = 5;
+                    player[this.layer].buyableTimer[this.id] = timer;
+
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
@@ -116,11 +119,12 @@ addLayer("c", {
                 "background-color": "#FFFFFF"
                 },
                 cost(x) {return 0},
-                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
-                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${format(player[this.layer].buyableTimer[this.id])}`},
+                canAfford() { return player[this.layer].buyableTimer[this.id] == 0 },
                 buy() {
                     timer = 5;
                     player[this.layer].buyableTimer[this.id] = timer;
+
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
@@ -131,9 +135,12 @@ addLayer("c", {
                     "background-color": "#FFFF00"
                 },
                 cost(x) {return 0},
-                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
-                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${format(player[this.layer].buyableTimer[this.id])}`},
+                canAfford() { return player[this.layer].buyableTimer[this.id] == 0 },
                 buy() {
+                    timer = 5;
+                    player[this.layer].buyableTimer[this.id] = timer;
+
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))     
                 },
@@ -144,9 +151,12 @@ addLayer("c", {
                 "background-color": "#00FFFF"
                 },
                 cost(x) {return 0},
-                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
-                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${format(player[this.layer].buyableTimer[this.id])}`},
+                canAfford() { return player[this.layer].buyableTimer[this.id] == 0 },
                 buy() {
+                    timer = 5;
+                    player[this.layer].buyableTimer[this.id] = timer;
+
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))     
                 },
