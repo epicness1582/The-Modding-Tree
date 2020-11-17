@@ -72,15 +72,69 @@ addLayer("c", {
                 style: {
                 body: {backgroundcolor: "#D2691E"},
                 },
-                cost(x) {0},
-                display() { "Wood" },
+                cost(x) {return 0},
+                display() {return "Wood" },
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
                 },
             },
-        },
+
+            12: {
+                title: "Stone",
+                style: {
+                body: {backgroundcolor: "#D2691E"},
+                },
+                cost(x) {return 0},
+                display() {return "Wood" },
+                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                buy() {
+                    player[this.layer].points = player[this.layer].points.add(1)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+                },
+            },
+
+            13: {
+                title: "Iron",
+                style: {
+                body: {backgroundcolor: "#D2691E"},
+                },
+                cost(x) {return 0},
+                display() {return "Iron"},
+                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                buy() {
+                    player[this.layer].points = player[this.layer].points.add(1)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+                },
+            },
+            14: {
+                title: "Gold",
+                style: {
+                    "background-color": "#D2691E"
+                },
+                cost(x) {return 0},
+                display() {return "Gold"},
+                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                buy() {
+                    player[this.layer].points = player[this.layer].points.add(1)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))     
+                },
+            },
+            15: {
+                title: "Diamond",
+                style: {
+                body: {backgroundcolor: "#D2691E"},
+                },
+                cost(x) {return 0},
+                display() {return "Diamond"},
+                canAfford() { return player[this.layer].points.gte(this.cost()) },
+                buy() {
+                    player[this.layer].points = player[this.layer].points.add(1)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))     
+                },
+            },
+            
 
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
@@ -99,7 +153,7 @@ addLayer("c", {
             if(hasUpgrade("c", 14)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
-    }),
+    }}),
 
     addLayer("T", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
