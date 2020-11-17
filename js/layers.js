@@ -70,7 +70,7 @@ addLayer("c", {
             11: {
                 title: "Wood",
                 style: {
-                body: {backgroundcolor: "#D2691E"},
+                    "background-color": "#D2691E"
                 },
                 cost(x) {return 0},
                 display() {return "Wood" },
@@ -84,7 +84,7 @@ addLayer("c", {
             12: {
                 title: "Stone",
                 style: {
-                body: {backgroundcolor: "#D2691E"},
+                    "background-color": "#808080"
                 },
                 cost(x) {return 0},
                 display() {return "Wood" },
@@ -98,7 +98,7 @@ addLayer("c", {
             13: {
                 title: "Iron",
                 style: {
-                body: {backgroundcolor: "#D2691E"},
+                "background-color": "#FFFFFF"
                 },
                 cost(x) {return 0},
                 display() {return "Iron"},
@@ -111,7 +111,7 @@ addLayer("c", {
             14: {
                 title: "Gold",
                 style: {
-                    "background-color": "#D2691E"
+                    "background-color": "#FFFF00"
                 },
                 cost(x) {return 0},
                 display() {return "Gold"},
@@ -124,7 +124,7 @@ addLayer("c", {
             15: {
                 title: "Diamond",
                 style: {
-                body: {backgroundcolor: "#D2691E"},
+                "background-color": "#00FFFF"
                 },
                 cost(x) {return 0},
                 display() {return "Diamond"},
@@ -134,7 +134,7 @@ addLayer("c", {
                     setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))     
                 },
             },
-            
+        },
 
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
@@ -153,7 +153,7 @@ addLayer("c", {
             if(hasUpgrade("c", 14)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
-    }}),
+    }),
 
     addLayer("T", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
