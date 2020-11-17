@@ -52,7 +52,14 @@ addLayer("c", {
     }})
 
     addLayer("M", {
-        startData() { return {                  // startData is a function that returns default data for a layer. 
+        startData() { return {         
+            buyableTimer: {
+                11: 10,
+                12: 0,
+                13: 0,
+                14: 0,
+                15: 0,
+              },         // startData is a function that returns default data for a layer. 
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
@@ -87,7 +94,7 @@ addLayer("c", {
                     "background-color": "#808080"
                 },
                 cost(x) {return 0},
-                display() {return "Wood" },
+                display() {return "Stone" },
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
