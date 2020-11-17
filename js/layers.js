@@ -88,8 +88,10 @@ addLayer("c", {
                 display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].buyableTimer[this.id] == 0 },
                 buy() {
+                    {format(player[this.layer].buyableTimer[this.id])
                     timer = 5
-                    player[this.layer].buyableTimer[this.id] = timer;
+                    player[this.layer].buyableTimer[this.id] = timer;}
+                    
                     player[this.layer].points = player[this.layer].points.add(1)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
