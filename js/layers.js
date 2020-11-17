@@ -54,7 +54,7 @@ addLayer("c", {
     addLayer("M", {
         startData() { return {         
             buyableTimer: {
-                11: 10,
+                11: 0,
                 12: 0,
                 13: 0,
                 14: 0,
@@ -80,11 +80,11 @@ addLayer("c", {
                     "background-color": "#D2691E"
                 },
                 cost(x) {return 0},
-                display() {return "Wood" },
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
-                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
             },
 
@@ -94,11 +94,11 @@ addLayer("c", {
                     "background-color": "#808080"
                 },
                 cost(x) {return 0},
-                display() {return "Stone" },
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
-                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
             },
 
@@ -108,11 +108,11 @@ addLayer("c", {
                 "background-color": "#FFFFFF"
                 },
                 cost(x) {return 0},
-                display() {return "Iron"},
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
-                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 },
             },
             14: {
@@ -121,11 +121,11 @@ addLayer("c", {
                     "background-color": "#FFFF00"
                 },
                 cost(x) {return 0},
-                display() {return "Gold"},
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
-                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))     
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))     
                 },
             },
             15: {
@@ -134,11 +134,11 @@ addLayer("c", {
                 "background-color": "#00FFFF"
                 },
                 cost(x) {return 0},
-                display() {return "Diamond"},
+                display() {return `Amount: ${player[this.layer].buyables[this.id]} Cooldown: ${player[this.layer].buyableTimer[this.id]}`},
                 canAfford() { return player[this.layer].points.gte(this.cost()) },
                 buy() {
                     player[this.layer].points = player[this.layer].points.add(1)
-                    setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))     
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))     
                 },
             },
         },
@@ -157,7 +157,7 @@ addLayer("c", {
         },
     
         layerShown() {
-            if(hasUpgrade("c", 14)) return true;
+            if(hasUpgrade("c", 11)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     }),
