@@ -177,7 +177,7 @@ addLayer("c", {
         },
     
         layerShown() {
-            if(hasUpgrade("c", 11)) return true;
+            if(hasUpgrade("c", 14)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     }),
