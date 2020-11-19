@@ -9,31 +9,27 @@ addLayer("c", {
 	     update(diff) {
     player[this.layer].points = player.points.div(16).floor(); 
          },
-    upgrades: {
-    rows: 1, 
-    cols: 4,
-    11: {
-	    Title: "Regular Walking",
-        description: "Let go of Shift and walk normally",
-        cost: new Decimal(5),
-    },
-    12: {
-        Title: "Sprinting",
-        description: "Double tap w or press ctrl",
-        cost: new Decimal(15),
-    },
-    13: {
-        Title: "Sprint Jumping",
-    description: "I AM SPEED AND I AM A PARKOUR KING",
-    cost: new Decimal(30),
-    },
-    14: {
-        Title: "I found something",
-        description: "Find a cave and unlock new layer content",
-        cost: new Decimal(50),
-    },
-},
-	    	    
+    milestones: {
+        1: {
+        requirementDescription: "5 Chunks",
+        effectDescription: "Walk Normally",
+        done() { return player.c.points.gte(5) }},
+        2: {
+            requirementDescription: "15 Chunks",
+            effectDescription: "Find the sprint keybinds",
+            done() { return player.c.points.gte(15) }
+        },
+        3: {
+            requirementDescription: "30 Chunks",
+            effectDescription: "PARKOUR F****NG LEGEND",
+            done() { return player.c.points.gte(30) }
+        },
+        4: {
+            requirementDescription: "50 Chunks",
+            effectDescription: "Is this how I play?",
+            done() { return player.c.points.gte(50) }
+        },
+    },  	    
     color: "#4BDC13",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     row:0,
@@ -177,7 +173,7 @@ addLayer("c", {
         },
     
         layerShown() {
-            if(hasUpgrade("c", 14)) return true;
+            if(hasMilestone("c", 4)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     }),
@@ -209,7 +205,7 @@ addLayer("c", {
         },
     
         layerShown() {
-            if(hasUpgrade("c", 14)) return true;
+            if(hasMilestone("c", 4)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     })

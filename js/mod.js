@@ -36,9 +36,9 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1.3)
-	if(hasUpgrade("c",11)) gain = new Decimal(4.317);
-	if(hasUpgrade("c",12)) gain = new Decimal(5.612);
-	if(hasUpgrade("c",13)) gain = new Decimal(7.143);
+	if(hasMilestone("c",1)) gain = new Decimal(4.317);
+	if(hasMilestone("c",2)) gain = new Decimal(5.612);
+	if(hasMilestone("c",3)) gain = new Decimal(7.143);
 	return gain
 }
 
