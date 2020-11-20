@@ -47,6 +47,9 @@ addLayer("c", {
         return new Decimal(1)
     }})
 
+
+
+
     addLayer("M", {
         startData() { return {         
             buyableTimer: {
@@ -177,6 +180,9 @@ addLayer("c", {
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     }),
+
+
+
 
     addLayer("T", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
@@ -591,6 +597,10 @@ addLayer("c", {
         }            // Returns a bool for if this layer's node should be visible in the tree.
     })
 
+
+
+
+    
     addLayer("e", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
             unlocked: true,                     // You can add more variables here to add them to your layer.
@@ -619,6 +629,12 @@ addLayer("c", {
     
         layerShown() { return true }            // Returns a bool for if this layer's node should be visible in the tree.
     })
+
+
+
+
+
+
 
     addLayer("F", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
@@ -649,6 +665,11 @@ addLayer("c", {
         layerShown() { return true }            // Returns a bool for if this layer's node should be visible in the tree.
     })
 
+
+
+
+
+
     addLayer("P", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
             unlocked: true,                     // You can add more variables here to add them to your layer.
@@ -678,6 +699,11 @@ addLayer("c", {
     
         layerShown() { return true }            // Returns a bool for if this layer's node should be visible in the tree.
     })
+
+
+
+
+
 
     addLayer("B", {
         startData() { return {                  // startData is a function that returns default data for a layer. 
