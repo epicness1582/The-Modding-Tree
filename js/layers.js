@@ -203,7 +203,388 @@ addLayer("c", {
         gainExp() {                             // Returns your exponent to your gain of the prestige resource.
             return new Decimal(1)
         },
-    
+    clickables: {
+          rows: 3,
+          cols: 3,
+          11: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          12: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'brown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          13: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          21: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          22: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          23: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          31: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          32: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+          33: {
+              unlocked() { return player[this.layer].unlocked }, 
+              canClick() { return true },
+            onClick() { 
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        player[this.layer].clickables[this.id] = "stone"
+                        break;
+                    case "stone":
+                        player[this.layer].clickables[this.id] = "iron"
+                        break;
+                    case "iron":
+                        player[this.layer].clickables[this.id] = "diamonds"
+                        break;                        
+                    case "diamonds":
+                        player[this.layer].clickables[this.id] = "air"
+                        break;
+                    default:
+                        player[this.layer].clickables[this.id] = "wood"
+                        break;
+
+                }
+            },
+            style() {
+                switch(getClickableState(this.layer, this.id)){
+                    case "wood":
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
+                        break;
+                    case "stone":
+                        return {'background-color': 'gray', 'size': '4px'}
+                        break;
+                    case "iron":
+                        return {'background-color': 'white', 'size': '4px'}
+                        break;                        
+                    case "diamonds":
+                        return {'background-color': 'cyan', 'size': '4px'}
+                        break;
+                    default:
+                        return {'size': '4px', 'opacity': '0.1'}
+                        break;
+            }},
+          },
+        },
         layerShown() {
             if(hasMilestone("c", 4)) return true;
             return false;
