@@ -75,6 +75,7 @@ h1, h2, h3, b, input {
 	color: rgba(0, 0, 0, 0.5);
 	text-shadow: var(--hqProperty3);
 	padding: 0;
+	margin: 0 10px 0 10px;
 }
 
 
@@ -90,23 +91,14 @@ h1, h2, h3, b, input {
 	color: rgba(0, 0, 0, 0.5);
 	text-shadow: var(--hqProperty3);
 	padding: 0;
-
+	margin: 0 10px 0 10px;
 }
 
 
 .smallNode {
 	height: 60px;
 	width: 60px;
-	border: var(--hqProperty1);
-	border-color: rgba(0, 0, 0, 0.125);
-	border-radius: 50%;
-	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
 	font-size: 30px;
-	font-family: "Lucida Console", "Courier New", monospace;
-	color: rgba(0, 0, 0, 0.5);
-	text-shadow: var(--hqProperty3);
-	padding: 0;
-
 }
 
 
@@ -121,25 +113,25 @@ h1, h2, h3, b, input {
 
 .can:hover {
 	transform: scale(1.15, 1.15);
-	box-shadow: 0px 0px 20px var(--points)
+	box-shadow: 0 0 20px var(--points)
 }
 
 
 .resetNotify {
-	box-shadow: var(--hqProperty2a), 0px 0px 8px #ffffff;
+	box-shadow: var(--hqProperty2a), 0 0 8px #ffffff;
 	z-index: 3
 }
 
 .treeNode.can:hover {
 	transform: scale(1.15, 1.15);
-	box-shadow: var(--hqProperty2a), 0px 0px 20px var(--points);
+	box-shadow: var(--hqProperty2a), 0 0 20px var(--points);
 	z-index: 4
 }
 
 .notify {
 	transform: scale(1.05, 1.05);
 	border-color: rgba(0, 0, 0, 0.125);
-	box-shadow: var(--hqProperty2a), 0px 0px 20px #ff0000;
+	box-shadow: var(--hqProperty2a), 0 0 20px #ff0000;
 	z-index: 3
 }
 
@@ -150,8 +142,8 @@ h1, h2, h3, b, input {
 
 .back {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: transparent;
 	border: 1px solid transparent;
 	color: var(--color);
@@ -161,7 +153,7 @@ h1, h2, h3, b, input {
 
 .other-back {
 	position: absolute;
-	top: 0px;
+	top: 0;
 	left: 60px;
 	background-color: transparent;
 	border: 1px solid transparent;
@@ -173,7 +165,7 @@ h1, h2, h3, b, input {
 
 .back:hover {
 	transform: scale(1.1, 1.1);
-	text-shadow: 0px 0px 7px var(--color);
+	text-shadow: 0 0 7px var(--color);
 }
 
 .barBase {
@@ -218,17 +210,17 @@ h1, h2, h3, b, input {
 	color: var(--color);
 	font-size: 20px;
 	cursor: pointer;
-	padding: 5px 20px 5px 20px;
-	margin: 5px 5px 5px 5px;
+	padding: 5px 20px;
+	margin: 5px;
 	border-radius: 10px;
 	border: 2px solid;
-	border-color: rgba(0, 0, 0, 0.125);
+	color: var(--color);
 
 }
 
 .tabButton:hover {
 	transform: scale(1.1, 1.1);
-	text-shadow: 0px 0px 7px var(--color);
+	text-shadow: 0 0 7px var(--color);
 }
 
 .reset {
@@ -256,10 +248,10 @@ h1, h2, h3, b, input {
 	border-color: rgba(0, 0, 0, 0.125);
 	font-size: 10px;
 	color: white;
-	text-shadow: 0px 0px 2px #000000;
+	text-shadow: 0 0 2px #000000;
 }
 .achievement:hover {
-	box-shadow: 0px 0px 10px var(--points);
+	box-shadow: 0 0 10px var(--points);
 	z-index: 7;
 }
 
@@ -300,13 +292,13 @@ h1, h2, h3, b, input {
 
 #points {
 	color: var(--points);
-	text-shadow: 0px 0px 10px var(--points);
+	text-shadow: 0 0 10px var(--points);
 }
 
 #optionWheel {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	height: 50px;
 	width: 50px;
 	cursor: pointer;
@@ -331,8 +323,8 @@ h1, h2, h3, b, input {
 
 #info:hover {
 	transform: scale(1.2, 1.2);
-	text-shadow: 5px 0px 10px #02f2f2,
-              -3px 0px 12px #02f2f2;
+	text-shadow: 5px 0 10px #02f2f2,
+              -3px 0 12px #02f2f2;
 }
 
 #discord {
@@ -367,7 +359,7 @@ h1, h2, h3, b, input {
 	top: 4px;
 	text-align: right;
 	color: var(--points);
-	text-shadow: 0px 0px 10px var(--points);
+	text-shadow: 0 0 10px var(--points);
 	cursor: pointer;
 }
 
@@ -386,7 +378,6 @@ a {
 	display: block;
 	font-size: 20px;
 	color: #41f5f5;
-	text-decoration-line: none;
 	cursor: pointer;
 	font-family: "Lucida Console", "Courier New", monospace;
 	-webkit-text-stroke-width: 1px;
@@ -396,8 +387,8 @@ a {
 
 .link:hover {
 	transform: scale(1.2, 1.2);
-	text-shadow: 5px 0px 10px #02f2f2,
-              -3px 0px 12px #02f2f2;
+	text-shadow: 5px 0 10px #02f2f2,
+              -3px 0 12px #02f2f2;
 }
 
 .opt {
@@ -406,7 +397,7 @@ a {
 	border-radius: 25%;
 	border: 4px solid;
 	background-color: var(--color);
-	border-color: rgba(255, 255, 255, 0.125) rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.25) rgba(255, 255, 255, 0.125);
+	border-color: rgba(0, 0, 0, 0.125);
 	color: rgba(0, 0, 0, 0.5);
 	cursor: pointer;
 }
@@ -554,7 +545,7 @@ ul {
 
 [tooltip] {
 	position: relative;
-	z-index: 999999 !important
+	z-index: 99999999 !important
 }
 
 [tooltip]:before,
@@ -565,6 +556,7 @@ ul {
 	opacity: 0;
 	pointer-events: none;
 	white-space: pre-wrap;
+	-webkit-transform:translate3d(0,0,0);
 }
 
 [tooltip]:before {
@@ -606,11 +598,12 @@ ul {
 
 [tooltip]:hover:before,
 [tooltip]:hover:after {
-	visibility: visible;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+	visibility: visible;
 	opacity: 1;
 	white-space: pre-wrap;
+	-webkit-transform:translate3d(0,0,0);
+
 }
 
 #loadingSection {
@@ -621,7 +614,7 @@ ul {
 
 .treeOverlay {
 	z-index: 200000;
-	pointer-events:none; 
+	pointer-events:none;
 	overflow:hidden;
 }
 
@@ -684,5 +677,5 @@ button > * {
 }
 
 #treeTab td button {
-    margin: 0 10px 0 10px;
+    margin: 0 10px;
 }

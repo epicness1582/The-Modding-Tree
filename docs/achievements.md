@@ -31,7 +31,7 @@ Individual achievement can have these features:
 
 - done(): A function returning a boolean to determine if the achievement should be awarded.
 
-- tooltip: Default tooltip for the achievement, appears when it is hovered over. Should convey the goal and any reward for completing the achievement. It can also be a function that returns updating text. Can use basic HTML.
+- tooltip: Default tooltip for the achievement, appears when it is hovered over. Should convey the goal and any reward for completing the achievement. It can also be a function that returns updating text. Can use basic HTML. Setting this to "" disables the tooltip.
 
 - effect(): **optional**. A function that calculates and returns the current values of any bonuses from the achievement. Can return a value or an object containing multiple values.
 
@@ -39,7 +39,11 @@ Individual achievement can have these features:
 
 - onComplete() - **optional**. this function will be called when the achievement is completed.
 
+- image: **optional**, puts the image from the given URL (relative or absolute) in the achievement
+
 - style: **optional**. Applies CSS to this achievement, in the form of an object where the keys are CSS attributes, and the values are the values for those attributes (both as strings).
+
+- textStyle: **optional**. Applies CSS to the text, in the form of an object where the keys are CSS attributes, and the values are the values for those attributes (both as strings).
 
 - layer: **assigned automagically**. It's the same value as the name of this layer, so you can do `player[this.layer].points` or similar.
 
@@ -48,3 +52,5 @@ Individual achievement can have these features:
 - goalTooltip: **optional, deprecated**. Appears when the achievement is hovered over and locked, overrides the basic tooltip. This is to display the goal (or a hint). It can also be a function that returns updating text. Can use basic HTML.
 
 - doneTooltip: **optional, deprecated**. Appears when the achievement is hovered over and completed, overrides the basic tooltip. This can display what the player achieved (the goal), and the rewards, if any. It can also be a function that returns updating text. Can use basic HTML.
+
+Disable achievement popups by adding `achievementsPopups: false` to the layer.

@@ -4,7 +4,6 @@ let modInfo = {
 	pointsName: "points",
 	discordName: "",
 	discordLink: "",
-	changelogLink: "https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	
 	offlineLimit: 1,  // In hours
@@ -12,10 +11,16 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "2.2.1",
-	name: "Uprooted",
+	num: "2.3.5",
+	name: "Cooler and Newer Edition",
 }
 
+let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.0</h3><br>
+		- Added things.<br>
+		- Added stuff.`
+
+let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
 var doNotCallTheseFunctionsEveryTick = ["doReset", "buy", "onPurchase", "blowUpEverything"]
@@ -63,5 +68,10 @@ function isEndgame() {
 
 // You can change this if you have things that can be messed up by long tick lengths
 function maxTickLength() {
-	return(3600000) // Default is 1 hour which is just arbitrarily large
+	return(3600) // Default is 1 hour which is just arbitrarily large
+}
+
+// Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,
+// you can cap their current resources with this.
+function fixOldSave(oldVersion){
 }

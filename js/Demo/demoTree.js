@@ -25,7 +25,8 @@ addNode("g", {
     canClick() {return player.points.gte(10)},
     tooltip: "Thanos your points",
     tooltipLocked: "Thanos your points",
-    onClick() {player.points = player.points.div(2)}
+    onClick() {player.points = player.points.div(2)
+    console.log(this.layer)}
 
 }, 
 )
@@ -37,7 +38,7 @@ addNode("h", {
     layerShown: true,
     tooltip: "Restore your points to 10",
     tooltipLocked: "Restore your points to 10",
-
+    row: "side",
     canClick() {return player.points.lt(10)},
     onClick() {player.points = new Decimal(10)}
 }, 

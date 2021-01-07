@@ -1,6 +1,6 @@
 // ************ Number formatting ************
 
-function exponentialFormat(num, precision) {
+function exponentialFormat(num, precision, mantissa = true) {
 	let e = num.log10().floor()
 	let m = num.div(Decimal.pow(10, e))
 	if(m.toStringWithDecimalPlaces(precision) == 10) {
@@ -8,13 +8,15 @@ function exponentialFormat(num, precision) {
 		e = e.add(1)
 	}
 	e = (e.gte(10000) ? commaFormat(e, 0) : e.toStringWithDecimalPlaces(0))
-	return m.toStringWithDecimalPlaces(precision)+"e"+e
-}
+	if (mantissa)
+		return m.toStringWithDecimalPlaces(precision)+"e"+e
+		else return "e"+e
+	}
 
 function commaFormat(num, precision) {
 	if (num === null || num === undefined) return "NaN"
 	if (num.mag < 0.001) return (0).toFixed(precision)
-	return num.toStringWithDecimalPlaces(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	return num.toStringWithDecimalPlaces(precision).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
 }
 
 
@@ -34,7 +36,7 @@ function sumValues(x) {
 	return x.reduce((a, b) => Decimal.add(a, b))
 }
 
-function format(decimal, precision=2) {
+function format(decimal, precision=2,) {
 	decimal = new Decimal(decimal)
 	if (isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)) {
 		player.hasNaN = true;
@@ -46,7 +48,9 @@ function format(decimal, precision=2) {
 		var slog = decimal.slog()
 		if (slog.gte(1e6)) return "F" + format(slog.floor())
 		else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
-	} else if (decimal.gte("1e1000")) return exponentialFormat(decimal, 0)
+	}
+	else if (decimal.gte("1e100000")) return exponentialFormat(decimal, 0, false)
+	else if (decimal.gte("1e1000")) return exponentialFormat(decimal, 0)
 	else if (decimal.gte(1e9)) return exponentialFormat(decimal, precision)
 	else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
 	else return regularFormat(decimal, precision)
@@ -55,7 +59,7 @@ function format(decimal, precision=2) {
 function formatWhole(decimal) {
 	decimal = new Decimal(decimal)
 	if (decimal.gte(1e9)) return format(decimal, 2)
-	if (decimal.lte(0.95) && !decimal.eq(0)) return format(decimal, 2)
+	if (decimal.lte(0.98) && !decimal.eq(0)) return format(decimal, 2)
 	return format(decimal, 0)
 }
 
@@ -115,17 +119,8 @@ function getStartPlayer() {
 
 	playerdata.infoboxes = {}
 	for (layer in layers){
-		playerdata[layer] = {}
-		if (layers[layer].startData) 
-			playerdata[layer] = layers[layer].startData()
-		else playerdata[layer].unlocked = true
-		playerdata[layer].buyables = getStartBuyables(layer)
-		if(playerdata[layer].clickables == undefined) playerdata[layer].clickables = getStartClickables(layer)
-		playerdata[layer].spentOnBuyables = new Decimal(0)
-		playerdata[layer].upgrades = []
-		playerdata[layer].milestones = []
-		playerdata[layer].achievements = []
-		playerdata[layer].challenges = getStartChallenges(layer)
+		playerdata[layer] = getStartLayerData(layer)
+
 		if (layers[layer].tabFormat && !Array.isArray(layers[layer].tabFormat)) {
 			playerdata.subtabs[layer] = {}
 			playerdata.subtabs[layer].mainTabs = Object.keys(layers[layer].tabFormat)[0]
@@ -140,8 +135,29 @@ function getStartPlayer() {
 			for (item in layers[layer].infoboxes)
 				playerdata.infoboxes[layer][item] = false
 		}
+	
 	}
 	return playerdata
+}
+
+function getStartLayerData(layer){
+	layerdata = {}
+	if (layers[layer].startData) 
+		layerdata = layers[layer].startData()
+
+	if (layerdata.unlocked === undefined) layerdata.unlocked = true
+	if (layerdata.total === undefined) layerdata.total = new Decimal(0)
+	if (layerdata.best === undefined) layerdata.best = new Decimal(0)
+	if (layerdata.resetTime === undefined) layerdata.resetTime = 0
+
+	layerdata.buyables = getStartBuyables(layer)
+	if(layerdata.clickables == undefined) layerdata.clickables = getStartClickables(layer)
+	layerdata.spentOnBuyables = new Decimal(0)
+	layerdata.upgrades = []
+	layerdata.milestones = []
+	layerdata.achievements = []
+	layerdata.challenges = getStartChallenges(layer)
+	return layerdata
 }
 
 
@@ -149,7 +165,7 @@ function getStartBuyables(layer){
 	let data = {}
 	if (layers[layer].buyables) {
 		for (id in layers[layer].buyables)
-			if (!isNaN(id))
+			if (isPlainObject(layers[layer].buyables[id]))
 				data[id] = new Decimal(0)
 	}
 	return data
@@ -159,7 +175,7 @@ function getStartClickables(layer){
 	let data = {}
 	if (layers[layer].clickables) {
 		for (id in layers[layer].clickables)
-			if (!isNaN(id))
+			if (isPlainObject(layers[layer].clickables[id]))
 				data[id] = ""
 	}
 	return data
@@ -169,7 +185,7 @@ function getStartChallenges(layer){
 	let data = {}
 	if (layers[layer].challenges) {
 		for (id in layers[layer].challenges)
-			if (!isNaN(id))
+			if (isPlainObject(layers[layer].challenges[id]))
 				data[id] = 0
 	}
 	return data
@@ -213,8 +229,8 @@ function fixData(defaultData, newData) {
 			else
 				newData[item] = new Decimal(newData[item])
 		}
-		else if ((!!defaultData[item]) && (defaultData[item].constructor === Object)) {
-			if (newData[item] === undefined || (defaultData[item].constructor !== Object))
+		else if ((!!defaultData[item]) && (typeof defaultData[item] === "object")) {
+			if (newData[item] === undefined || (typeof defaultData[item] !== "object"))
 				newData[item] = defaultData[item]
 			else
 				fixData(defaultData[item], newData[item])
@@ -241,6 +257,7 @@ function load() {
 	changeTheme();
 	changeTreeQuality();
 	updateLayers()
+	setupModInfo()
 
 	setupTemp();
 	updateTemp();
@@ -248,6 +265,11 @@ function load() {
 	loadVue();
 }
 
+function setupModInfo() {
+	modInfo.changelog = changelog
+	modInfo.winText = winText ? winText : `Congratulations! You have reached the end and beaten this game, but for now...`
+
+}
 
 function fixNaNs() {
 	NaNcheck(player)
@@ -301,6 +323,7 @@ function importSave(imported=undefined, forced=false) {
 		player = tempPlr;
 		player.versionType = modInfo.id
 		fixSave()	
+		versionCheck()
 		save()
 		window.location.reload()
 	} catch(e) {
@@ -317,7 +340,10 @@ function versionCheck() {
 	}
 	
 	if (setVersion) {
-		if (player.versionType == modInfo.id && VERSION.num > player.version) player.keepGoing = false
+		if (player.versionType == modInfo.id && VERSION.num > player.version) {
+			player.keepGoing = false
+			if (fixOldSave) fixOldSave(player.version)
+		} 
 		player.versionType = getStartPlayer().versionType
 		player.version = VERSION.num
 		player.beta = VERSION.beta
@@ -429,12 +455,14 @@ function respecBuyables(layer) {
 	if (!layers[layer].buyables) return
 	if (!layers[layer].buyables.respec) return
 	if (!confirm("Are you sure you want to respec? This will force you to do a \"" + (tmp[layer].name ? tmp[layer].name : layer) + "\" reset as well!")) return
-	layers[layer].buyables.respec()
+	run(layers[layer].buyables.respec, layers[layer].buyables)
 	updateBuyableTemp(layer)
+	document.activeElement.blur()
 }
 
 function canAffordUpgrade(layer, id) {
 	let upg = tmp[layer].upgrades[id]
+	if (tmp[layer].upgrades[id].canAfford !== undefined) return tmp[layer].upgrades[id].canAfford
 	let cost = tmp[layer].upgrades[id].cost
 	return canAffordPurchase(layer, upg, cost) 
 }
@@ -524,35 +552,43 @@ function buyUpgrade(layer, id) {
 }
 
 function buyUpg(layer, id) {
+	if (!tmp[layer].upgrades || !tmp[layer].upgrades[id]) return
+	let upg = tmp[layer].upgrades[id]
 	if (!player[layer].unlocked) return
 	if (!tmp[layer].upgrades[id].unlocked) return
 	if (player[layer].upgrades.includes(id)) return
-	let upg = tmp[layer].upgrades[id]
-	let cost = tmp[layer].upgrades[id].cost
+	if (upg.canAfford === false) return
+	let pay = layers[layer].upgrades[id].pay
+	if (pay !== undefined)
+		run(pay, layers[layer].upgrades[id])
+	else 
+		{
+		let cost = tmp[layer].upgrades[id].cost
 
-	if (upg.currencyInternalName){
-		let name = upg.currencyInternalName
-		if (upg.currencyLocation){
-			if (upg.currencyLocation[name].lt(cost)) return
-			upg.currencyLocation[name] = upg.currencyLocation[name].sub(cost)
-		}
-		else if (upg.currencyLayer){
-			let lr = upg.currencyLayer
-			if (player[lr][name].lt(cost)) return
-			player[lr][name] = player[lr][name].sub(cost)
+		if (upg.currencyInternalName){
+			let name = upg.currencyInternalName
+			if (upg.currencyLocation){
+				if (upg.currencyLocation[name].lt(cost)) return
+				upg.currencyLocation[name] = upg.currencyLocation[name].sub(cost)
+			}
+			else if (upg.currencyLayer){
+				let lr = upg.currencyLayer
+				if (player[lr][name].lt(cost)) return
+				player[lr][name] = player[lr][name].sub(cost)
+			}
+			else {
+				if (player[name].lt(cost)) return
+				player[name] = player[name].sub(cost)
+			}
 		}
 		else {
-			if (player[name].lt(cost)) return
-			player[name] = player[name].sub(cost)
+			if (player[layer].points.lt(cost)) return
+			player[layer].points = player[layer].points.sub(cost)	
 		}
-	}
-	else {
-		if (player[layer].points.lt(cost)) return
-		player[layer].points = player[layer].points.sub(cost)	
 	}
 	player[layer].upgrades.push(id);
 	if (upg.onPurchase != undefined)
-		upg.onPurchase()
+		run(upg.onPurchase, upg)
 }
 
 function buyMaxBuyable(layer, id) {
@@ -561,7 +597,7 @@ function buyMaxBuyable(layer, id) {
 	if (!tmp[layer].buyables[id].canAfford) return
 	if (!layers[layer].buyables[id].buyMax) return
 
-	layers[layer].buyables[id].buyMax()
+	run(layers[layer].buyables[id].buyMax, layers[layer].buyables[id])
 	updateBuyableTemp(layer)
 }
 
@@ -570,7 +606,7 @@ function buyBuyable(layer, id) {
 	if (!tmp[layer].buyables[id].unlocked) return
 	if (!tmp[layer].buyables[id].canAfford) return
 
-	layers[layer].buyables[id].buy()
+	run(layers[layer].buyables[id].buy, layers[layer].buyables[id])
 	updateBuyableTemp(layer)
 }
 
@@ -579,7 +615,7 @@ function clickClickable(layer, id) {
 	if (!tmp[layer].clickables[id].unlocked) return
 	if (!tmp[layer].clickables[id].canClick) return
 
-	layers[layer].clickables[id].onClick()
+	run(layers[layer].clickables[id].onClick, layers[layer].clickables[id])
 	updateClickableTemp(layer)
 }
 
@@ -599,12 +635,15 @@ function inChallenge(layer, id){
 var onTreeTab = true
 function showTab(name) {
 	if (LAYERS.includes(name) && !layerunlocked(name)) return
-
+	if (player.tab === name && isPlainObject(tmp[name].tabFormat)) {
+		player.subtabs[name].mainTabs = Object.keys(layers[name].tabFormat)[0]
+	}
 	var toTreeTab = name == "none"
 	player.tab = name
 	if (player.navTab == "none" && (tmp[name].row !== "side") && (tmp[name].row !== "otherside")) player.lastSafeTab = name
 	delete player.notify[name]
 	needCanvasUpdate = true
+	document.activeElement.blur()
 }
 
 function showNavTab(name) {
@@ -646,8 +685,8 @@ function subtabShouldNotify(layer, family, id){
 	let subtab = {}
 	if (family == "mainTabs") subtab = tmp[layer].tabFormat[id]
 	else subtab = tmp[layer].microtabs[family][id]
-	if (player.subtabs[layer][family] === id) return false
-	else if (subtab.embedLayer) return tmp[subtab.embedLayer].notify
+
+	if (subtab.embedLayer) return tmp[subtab.embedLayer].notify
 	else return subtab.shouldNotify
 }
 
@@ -660,7 +699,7 @@ function subtabResetNotify(layer, family, id){
 }
 
 function nodeShown(layer) {
-	if (tmp[layer].layerShown) return true
+	if (layerShown(layer)) return true
 	switch(layer) {
 		case "idk":
 			return player.idk.unlocked
@@ -671,7 +710,7 @@ function nodeShown(layer) {
 
 function layerunlocked(layer) {
 	if (tmp[layer] && tmp[layer].type == "none") return (player[layer].unlocked)
-	return LAYERS.includes(layer) && (player[layer].unlocked || (tmp[layer].baseAmount.gte(tmp[layer].requires) && tmp[layer].layerShown))
+	return LAYERS.includes(layer) && (player[layer].unlocked || (tmp[layer].canReset && tmp[layer].layerShown))
 }
 
 function keepGoing() {
@@ -687,16 +726,19 @@ function toNumber(x) {
 
 function updateMilestones(layer){
 	for (id in layers[layer].milestones){
-		if (!(player[layer].milestones.includes(id)) && layers[layer].milestones[id].done())
+		if (!(hasMilestone(layer, id)) && layers[layer].milestones[id].done()){
 			player[layer].milestones.push(id)
+			if (tmp[layer].milestonePopups || tmp[layer].milestonePopups === undefined) doPopup("milestone", tmp[layer].milestones[id].requirementDescription, "Milestone Gotten!", 3, tmp[layer].color);
+		}
 	}
 }
 
 function updateAchievements(layer){
 	for (id in layers[layer].achievements){
-		if (!isNaN(id) && !(player[layer].achievements.includes(id)) && layers[layer].achievements[id].done()) {
+		if (isPlainObject(layers[layer].achievements[id]) && !(hasAchievement(layer, id)) && layers[layer].achievements[id].done()) {
 			player[layer].achievements.push(id)
 			if (layers[layer].achievements[id].onComplete) layers[layer].achievements[id].onComplete()
+			if (tmp[layer].achievementPopups || tmp[layer].achievementPopups === undefined) doPopup("achievement", tmp[layer].achievements[id].name, "Achievement Gotten!", 3, tmp[layer].color);
 		}
 	}
 }
@@ -747,7 +789,9 @@ function focused(x) {
 
 function prestigeButtonText(layer)
 {
-	if(tmp[layer].type == "normal")
+	if (layers[layer].prestigeButtonText !== undefined)
+		return layers[layer].prestigeButtonText()
+	else if(tmp[layer].type == "normal")
 		return `${ player[layer].points.lt(1e3) ? (tmp[layer].resetDescription !== undefined ? tmp[layer].resetDescription : "Reset for ") : ""}+<b>${formatWhole(tmp[layer].resetGain)}</b> ${tmp[layer].resource} ${tmp[layer].resetGain.lt(100) && player[layer].points.lt(1e3) ? `<br><br>Next at ${ (tmp[layer].roundUpCost ? formatWhole(tmp[layer].nextAt) : format(tmp[layer].nextAt))} ${ tmp[layer].baseResource }` : ""}`
 	else if(tmp[layer].type== "static")
 		return `${tmp[layer].resetDescription !== undefined ? tmp[layer].resetDescription : "Reset for "}+<b>${formatWhole(tmp[layer].resetGain)}</b> ${tmp[layer].resource}<br><br>${player[layer].points.lt(30) ? (tmp[layer].baseAmount.gte(tmp[layer].nextAt)&&(tmp[layer].canBuyMax !== undefined) && tmp[layer].canBuyMax?"Next:":"Req:") : ""} ${formatWhole(tmp[layer].baseAmount)} / ${(tmp[layer].roundUpCost ? formatWhole(tmp[layer].nextAtDisp) : format(tmp[layer].nextAtDisp))} ${ tmp[layer].baseResource }		
@@ -755,11 +799,65 @@ function prestigeButtonText(layer)
 	else if(tmp[layer].type == "none")
 		return ""
 	else
-		return layers[layer].prestigeButtonText()
+		return "You need prestige button text"
 }
 
 function isFunction(obj) {
 	return !!(obj && obj.constructor && obj.call && obj.apply);
   };
-  
+
+function isPlainObject(obj) {
+	return (!!obj) && (obj.constructor === Object)
+}
+
 document.title = modInfo.name
+
+
+
+// Variables that must be defined to display popups
+var activePopups = [];
+var popupID = 0;
+
+// Function to show popups
+function doPopup(type="none",text="This is a test popup.",title="",timer=3, color="") {
+	switch(type) {
+		case "achievement":
+			popupTitle = "Achievement Unlocked!";
+			popupType = "achievement-popup"
+			break;
+		case "challenge":
+			popupTitle = "Challenge Complete";
+			popupType = "challenge-popup"
+			break;
+		default:
+			popupTitle = "Something Happened?";
+			popupType = "default-popup"
+			break;
+	}
+	if(title != "") popupTitle = title;
+	popupMessage = text;
+	popupTimer = timer; 
+
+	activePopups.push({"time":popupTimer,"type":popupType,"title":popupTitle,"message":(popupMessage+"\n"),"id":popupID, "color":color})
+	popupID++;
+}
+
+
+//Function to reduce time on active popups
+function adjustPopupTime(diff) {
+	for(popup in activePopups) {
+		activePopups[popup].time -= diff;
+		if(activePopups[popup]["time"] < 0) {
+			activePopups.splice(popup,1); // Remove popup when time hits 0
+		}
+	}
+}
+
+function run(func, target, args=null){
+	if (!!(func && func.constructor && func.call && func.apply)){
+		let bound = func.bind(target) 
+		return bound(args)
+	}
+	else
+		return func;
+}
