@@ -1,10 +1,11 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
-	pointsName: "points",
-	discordName: "",
-	discordLink: "",
+	name: "Minecraft Tree",
+	id: "epic mod",
+	author: "epicness1582",
+	pointsName: "Blocks Walked",
+	discordName: "The Modding Tree",
+	discordLink: "https://discord.gg/6FN5UZg",
+	changelogLink: "https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	
 	offlineLimit: 1,  // In hours
