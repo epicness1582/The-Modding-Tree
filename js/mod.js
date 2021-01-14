@@ -8,12 +8,12 @@ let modInfo = {
 	changelogLink: "https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	
-	offlineLimit: 1,  // In hours
+	offlineLimit: 0,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
+	num: "beta 1.0",
 	name: "Testing stuff",
 }
 
@@ -43,9 +43,9 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1.3)
-	if(hasMilestone("c",1)) gain = new Decimal(4.317);
-	if(hasMilestone("c",2)) gain = new Decimal(5.612);
-	if(hasMilestone("c",3)) gain = new Decimal(7.143);
+	if(hasMilestone("ch",1)) gain = new Decimal(4.317);
+	if(hasMilestone("ch",2)) gain = new Decimal(5.612);
+	if(hasMilestone("ch",3)) gain = new Decimal(7.143);
 	return gain
 }
 

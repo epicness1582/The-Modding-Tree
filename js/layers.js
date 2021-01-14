@@ -1,11 +1,16 @@
-addLayer("c", {
+addLayer("ch", {
     name: "Chunks", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "Ch", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "C", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
         points: new Decimal(0),
     }},
+  tabFormat: [
+    "main-display",
+    "prestige-button",
+    "milestones",
+        ],
 	     update(diff) {
     player[this.layer].points = player.points.div(16).floor(); 
          },
@@ -13,21 +18,21 @@ addLayer("c", {
         1: {
         requirementDescription: "5 Chunks",
         effectDescription: "Walk Normally",
-        done() { return player.c.points.gte(5) }},
+        done() { return player.ch.points.gte(5) }},
         2: {
             requirementDescription: "15 Chunks",
             effectDescription: "Find the sprint keybinds",
-            done() { return player.c.points.gte(15) }
+            done() { return player.ch.points.gte(15) }
         },
         3: {
             requirementDescription: "30 Chunks",
             effectDescription: "PARKOUR F****NG LEGEND",
-            done() { return player.c.points.gte(30) }
+            done() { return player.ch.points.gte(30) }
         },
         4: {
             requirementDescription: "50 Chunks",
             effectDescription: "Is this how I play?",
-            done() { return player.c.points.gte(50) }
+            done() { return player.ch.points.gte(50) }
         },
     },  	    
     color: "#4BDC13",
@@ -73,6 +78,11 @@ addLayer("c", {
         resource: "Blocks Mined",            // The name of this layer's main prestige resource.
         row: 1,                                 // The row this layer is on (0 is the first row).
     
+      tabFormat: [
+    "main-display",
+    "prestige-button",
+    "buyables",
+        ],
         baseResource: "points",                 // The name of the resource your prestige gain is based on.
         baseAmount() { return player.points },  // A function to return the current amount of baseResource.
     
@@ -177,7 +187,7 @@ addLayer("c", {
         },
     
         layerShown() {
-            if(hasMilestone("c", 4)) return true;
+            if(hasMilestone("ch", 4)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     }),
@@ -201,6 +211,7 @@ addLayer("c", {
         requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency.
                                                 // Also the amount required to unlock the layer.
     
+      
         type: "none",                         // Determines the formula used for calculating prestige currency.
         exponent: 0.5,                          // "normal" prestige gain is (currency^exponent).
     
@@ -210,6 +221,13 @@ addLayer("c", {
         gainExp() {                             // Returns your exponent to your gain of the prestige resource.
             return new Decimal(1)
         },
+      tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
+      
     clickables: {
           rows: 3,
           cols: 3,
@@ -281,7 +299,7 @@ addLayer("c", {
             style() {
                 switch(getClickableState(this.layer, this.id)){
                     case "wood":
-                        return {'background-color': 'brown', 'size': '4px'}
+                        return {'background-color': 'SaddleBrown', 'size': '4px'}
                         break;
                     case "stone":
                         return {'background-color': 'gray', 'size': '4px'}
@@ -592,8 +610,9 @@ addLayer("c", {
             }},
           },
         },
+      
         layerShown() {
-            if(hasMilestone("c", 4)) return true;
+            if(hasMilestone("ch", 4)) return true;
             return false;
         }            // Returns a bool for if this layer's node should be visible in the tree.
     })
@@ -607,9 +626,14 @@ addLayer("c", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+    tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
         color: "#9400D3",                       // The color for this layer, which affects many elements.
-        resource: "Enchantments",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 2,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "enchantments done",                 // The name of the resource your prestige gain is based on.
@@ -642,9 +666,14 @@ addLayer("c", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+    tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
         color: "#006400",                       // The color for this layer, which affects many elements.
-        resource: "Mobs",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 2,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "Mobs Slain",                 // The name of the resource your prestige gain is based on.
@@ -676,9 +705,14 @@ addLayer("c", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+    tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
         color: "#FFFFFF",                       // The color for this layer, which affects many elements.
-        resource: "Potions",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 2,
         position: 1,
     
@@ -711,9 +745,21 @@ addLayer("c", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+        nodeStyle: {
+          background: "black",
+	        transform: "scale(2)",
+	        animation: "pulse-black 2s infinite"
+        },
+      tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
+        nodeStyle:{width: "200px", height:"200px"},
+      shadow:"blue",
         color: "#000000",                       // The color for this layer, which affects many elements.
-        resource: "Bosses",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 3,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "Bosses Slain",                 // The name of the resource your prestige gain is based on.
