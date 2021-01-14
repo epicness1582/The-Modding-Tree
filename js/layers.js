@@ -227,6 +227,7 @@ addLayer("ch", {
     "clickables",
     "buyables",
         ],
+      
     clickables: {
           rows: 3,
           cols: 3,
@@ -609,6 +610,7 @@ addLayer("ch", {
             }},
           },
         },
+      
         layerShown() {
             if(hasMilestone("ch", 4)) return true;
             return false;
@@ -624,9 +626,14 @@ addLayer("ch", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+    tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
         color: "#9400D3",                       // The color for this layer, which affects many elements.
-        resource: "Enchantments",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 2,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "enchantments done",                 // The name of the resource your prestige gain is based on.
@@ -659,9 +666,14 @@ addLayer("ch", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+    tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
         color: "#006400",                       // The color for this layer, which affects many elements.
-        resource: "Mobs",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 2,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "Mobs Slain",                 // The name of the resource your prestige gain is based on.
@@ -693,9 +705,14 @@ addLayer("ch", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+    tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
         color: "#FFFFFF",                       // The color for this layer, which affects many elements.
-        resource: "Potions",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 2,
         position: 1,
     
@@ -728,9 +745,21 @@ addLayer("ch", {
             unlocked: true,                     // You can add more variables here to add them to your layer.
             points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
         }},
-    
+        nodeStyle: {
+          background: "black",
+	        transform: "scale(2)",
+	        animation: "pulse-black 2s infinite"
+        },
+      tabFormat: [
+    "main-display",
+    "prestige-button",
+    "clickables",
+    "buyables",
+        ],
+        nodeStyle:{width: "200px", height:"200px"},
+      shadow:"blue",
         color: "#000000",                       // The color for this layer, which affects many elements.
-        resource: "Bosses",            // The name of this layer's main prestige resource.
+        resource: "Redacted",            // The name of this layer's main prestige resource.
         row: 3,                                 // The row this layer is on (0 is the first row).
     
         baseResource: "Bosses Slain",                 // The name of the resource your prestige gain is based on.
